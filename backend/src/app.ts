@@ -14,6 +14,7 @@ async function main() {
   const server = new Server({
     port: EnvironmentAdapter.envs.PORT,
     routes: ServerRouter.routes,
+    frontend_url: EnvironmentAdapter.envs.FRONTEND_URL,
   });
 
   await server.start();

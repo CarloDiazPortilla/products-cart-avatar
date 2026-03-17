@@ -5,5 +5,6 @@ export class EnvironmentAdapter {
   static readonly envs = {
     MONGO_URI: env.get("MONGO_URI").required().asString(),
     PORT: env.get("PORT").default(3000).asPortNumber(),
+    FRONTEND_URL: env.get("FRONTEND_URL").required().asString(),
   }
 }
