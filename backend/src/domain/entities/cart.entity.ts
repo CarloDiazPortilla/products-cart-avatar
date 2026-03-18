@@ -8,11 +8,8 @@ export class Cart {
     public readonly items: CartItem[],
     public readonly fechaCreacion: Date,
     public readonly fechaActualizacion: Date,
+    public readonly totalCompra: number,
   ) { }
-
-  public get totalCompra(): number {
-    return parseFloat(this.items.reduce((sum, i) => sum + i.precio * i.cantidad, 0).toFixed(2));
-  }
 
   static toEntity = (doc: ICartDocument): Cart => {
     return new Cart(
@@ -27,7 +24,8 @@ export class Cart {
         i.thumbnail
       )),
       doc.fechaCreacion,
-      doc.fechaActualizacion
+      doc.fechaActualizacion,
+      doc.totalCompra
     );
   };
 }
