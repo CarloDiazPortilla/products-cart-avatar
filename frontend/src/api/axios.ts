@@ -2,7 +2,7 @@ import axios, { AxiosError } from "axios";
 import type { InternalAxiosRequestConfig } from "axios"
 import { ENDPOINTS } from "./endpoints";
 
-const BASE_URL = "http://localhost:4000/api";
+const BASE_URL = "http://localhost:3000/api";
 
 export const apiClient = axios.create({
   baseURL: BASE_URL,
