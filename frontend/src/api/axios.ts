@@ -1,5 +1,6 @@
 import axios, { AxiosError } from "axios";
 import type { InternalAxiosRequestConfig } from "axios"
+import { ENDPOINTS } from "./endpoints";
 
 const BASE_URL = "http://localhost:4000/api";
 
@@ -35,8 +36,8 @@ apiClient.interceptors.response.use(
     };
 
     const isAuthEndpoint =
-      originalRequest.url?.includes("/auth/login") ||
-      originalRequest.url?.includes("/auth/refresh");
+      originalRequest.url?.includes(ENDPOINTS.AUTH.LOGIN) ||
+      originalRequest.url?.includes(ENDPOINTS.AUTH.REFRESH);
 
     if (error.response?.status === 401 && !originalRequest._retry && !isAuthEndpoint) {
       if (isRefreshing) {
@@ -53,7 +54,7 @@ apiClient.interceptors.response.use(
 
       try {
         const { data } = await axios.post(
-          `${BASE_URL}/auth/refresh`,
+          `${BASE_URL}${ENDPOINTS.AUTH.REFRESH}`,
           {},
           { withCredentials: true }
         );
